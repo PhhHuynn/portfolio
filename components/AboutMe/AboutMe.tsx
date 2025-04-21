@@ -1,5 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 import Image from "next/image";
 
 import about from "@/data/about";
@@ -69,7 +70,12 @@ export default function AboutMe() {
                                         <span className="font-black">
                                             Github:
                                         </span>{" "}
-                                        {about.github}
+                                        <Link
+                                            className="hover:underline duration-75"
+                                            href={about.github}
+                                        >
+                                            {about.github}
+                                        </Link>
                                     </li>
                                     <li className="text-2sm">
                                         <span className="font-black">
@@ -100,7 +106,12 @@ export default function AboutMe() {
                                         <span className="font-black">
                                             Github:
                                         </span>{" "}
-                                        {about.github}
+                                        <Link
+                                            className="hover:underline duration-75"
+                                            href={about.github}
+                                        >
+                                            {about.github}
+                                        </Link>
                                     </li>
                                     <li className="text-2sm">
                                         <span className="font-black">

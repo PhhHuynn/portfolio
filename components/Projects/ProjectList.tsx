@@ -27,6 +27,29 @@ type ProjectListProps = {
     projects: Project[];
 };
 
+function Highlight(text: string) {
+    const parts = text.split(/({|})/g);
+    let isBold = false;
+
+    return parts.map((part, index) => {
+        if (part === "{") {
+            isBold = true;
+            return null;
+        }
+        if (part === "}") {
+            isBold = false;
+            return null;
+        }
+        return isBold ? (
+            <span key={index} className="font-bold ">
+                {part}
+            </span>
+        ) : (
+            <span key={index}>{part}</span>
+        );
+    });
+}
+
 export default function ProjectList({ projects }: ProjectListProps) {
     return (
         <div className="grid-layout md:grid-cols-2 lg:grid-cols-3  ">
@@ -55,7 +78,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
                                         key={i}
                                         className="text-accent-foreground"
                                     >
-                                        {line}
+                                        {Highlight(line)}
                                     </p>
                                 )
                             )}
