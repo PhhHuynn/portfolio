@@ -13,11 +13,11 @@ export interface Project {
 const projects: Project[] = [
     {
         id: 1,
-        type: "Dự án cá nhân",
+        type: "Personal project",
         name: "Portfolio",
         description: [
-            "Xây dựng website portfolio cá nhân để giới thiệu bản thân với nhà tuyển dụng",
-            "Tích hợp các tính năng như {dark mode}, {responsive layout}, và {animation} để nâng cao trải nghiệm người dùng",
+            "Built a portfolio website to display my skills to potential employers.",
+            "Integrated features like {dark mode, responsive layout, and animations} to enhance user experience.",
         ],
         demoWeb: "https://portfolio-phhuynns-projects.vercel.app",
         technologies: [
@@ -33,28 +33,28 @@ const projects: Project[] = [
     },
     {
         id: 2,
-        type: "Dự án nhóm",
+        type: "6 members",
         name: "UStock",
         demoWeb: null,
         description: [
-            "Làm việc trong 1 nhóm gồm 6 thành viên với {vai trò Full-stack Developer}.",
-            "Sử dụng {WPF} để xây dựng ứng dụng quản lý hàng hóa.",
-            "Xây dựng {tính năng đăng nhập và gửi gmail}, phát triển {giao diện quản lý danh sách hàng hóa và thống kê sản phẩm}",
+            "{Integrated Gmail login} using user authentication.",
+            "Developed the {inventory management interface and product statistics dashboard} using WPF and XAML, supporting data tracking and analysis.",
+            "{Reviewed and evaluated source code} from team members to ensure code quality and project progress.",
         ],
         technologies: ["C#", "SQL Server"],
-        repoUrl: "https://github.com/haianh1711/QuanLyBanHang",
+        repoUrl: "https://github.com/haianh1711/QuanLyHangHoa",
         date: "01/2025 - 2/2025",
         slug: "ustock",
     },
     {
         id: 3,
-        type: "Dự án cá nhân",
+        type: "Personal project",
         name: "TaH Fashion Store",
         demoWeb: null,
         description: [
-            "Tích hợp {tính năng đếm ngược} bằng JavaScript để hiển thị thời gian khuyến mãi.",
-            "Xây dựng chức năng thêm, xóa, và cập nhật sản phẩm trong {giỏ hàng} với tổng tiền tự động tính toán.",
-            "Dùng {SCSS giúp tối ưu hóa mã CSS} giúp việc đọc và bảo trì dễ dàng hơn",
+            "Integrate {countdown timer} using JavaScript to display promotional time.",
+            "Build functionality to add, remove, and update products in the {shopping cart} with automatic total price calculation.",
+            "Use {SCSS to optimize CSS code} for easier readability and maintainability.",
         ],
         technologies: ["HTML/CSS", "SASS", "JavaScript"],
         repoUrl: "https://github.com/PhhHuynn/Fashion-shop",
