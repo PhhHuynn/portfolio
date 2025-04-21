@@ -1,8 +1,6 @@
 import React from "react";
 import about from "@/data/about";
-import { Button } from "../ui/button";
-import { Download, Github, Mouse, ChevronDown } from "lucide-react";
-import Link from "next/link";
+import { Mouse, ChevronDown } from "lucide-react";
 import Image from "next/image";
 
 export default async function Home() {
@@ -18,18 +16,6 @@ export default async function Home() {
                         <h2 className="text-base sm:text-lg md:text-xl">
                             A {about.role}
                         </h2>
-                    </div>
-                    <div className="flex flex-row items-center justify-center md:justify-start gap-4">
-                        <Button size="lg">
-                            <Download className="mr-2 h-4 w-4" />
-                            Download CV
-                        </Button>
-                        <Link
-                            href={about.github}
-                            className="rounded-full p-2 hover:text-primary hover:bg-primary/10 transition-all duration-100"
-                        >
-                            <Github className="h-6 w-6" />
-                        </Link>
                     </div>
                 </div>
                 <Image

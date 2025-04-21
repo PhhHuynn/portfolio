@@ -7,7 +7,6 @@ import {
     SiGit,
     SiFigma,
 } from "react-icons/si";
-import { MdPeople, MdReportProblem, MdAccessTime } from "react-icons/md";
 import { FaWindows } from "react-icons/fa";
 import { GiCircuitry } from "react-icons/gi";
 import { DiMsqlServer } from "react-icons/di";
@@ -18,8 +17,9 @@ const about = {
     name: "Le Thi Phuong Huyen",
     role: "Front-end Developer",
     img: "/images/avatar.jpg",
+    img2: "/images/avatar.jpg",
     education: {
-        role: "Third-year student at FPT Polytechnic Da Nang.",
+        role: "Third-year student at FPT PolySchool Da Nang.",
         major: "Software Development",
         GPA: "3.98/4",
     },

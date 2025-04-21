@@ -50,7 +50,7 @@ export default function NavMain() {
             },
             {
                 root: null, // lấy viewport làm root
-                threshold: 0.5, // chiếm 50% thì tính là active
+                threshold: 0.9, // chiếm 50% thì tính là active
             }
         );
 
