@@ -17,7 +17,7 @@ const about = {
     name: "Le Thi Phuong Huyen",
     role: "Front-end Developer",
     img: "/images/avatar.jpg",
-    img2: "/images/avatar.jpg",
+    img2: "/images/avatar2.jpg",
     education: {
         role: "Third-year student at FPT PolySchool Da Nang.",
         major: "Software Development",
