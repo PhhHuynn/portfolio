@@ -32,7 +32,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
         <div className="grid-layout md:grid-cols-2 lg:grid-cols-3  ">
             <div className="col-span-12 md:col-start-2 md:col-span-10 grid gap-6 md:grid-cols-3">
                 {projects.map((project) => (
-                    <Card className="mx-5 md:mx-3" key={project.id}>
+                    <Card className="mx-5 md:mx-0" key={project.id}>
                         <CardHeader>
                             <p className="text-sm text-gray-500">
                                 {project.type}
