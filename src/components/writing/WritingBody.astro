@@ -1,0 +1,9 @@
+---
+interface Props { Content: any }
+const { Content } = Astro.props
+---
+<div class="border border-outline-variant bg-surface-container-lowest p-6 md:p-10">
+  <div class="prose prose-invert max-w-none font-body-lg text-body-lg leading-relaxed text-on-surface prose-headings:font-code-sm prose-headings:text-primary prose-a:text-primary prose-code:text-primary prose-code:bg-surface-container-high prose-code:px-1">
+    <Content />
+  </div>
+</div>

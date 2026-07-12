@@ -1,0 +1,32 @@
+---
+import { getCollection, getEntry, render } from 'astro:content'
+import Layout from '../../layouts/Layout.astro'
+import WritingHeader from '../../components/writing/WritingHeader.astro'
+import WritingBody from '../../components/writing/WritingBody.astro'
+import WritingProjectBanner from '../../components/writing/WritingProjectBanner.astro'
+
+export async function getStaticPaths() {
+  const writings = await getCollection('writings')
+  return writings.map((writing) => ({ params: { id: writing.id } }))
+}
+
+const { id } = Astro.params
+const writing = await getEntry('writings', id!)
+if (!writing) return Astro.redirect('/404')
+
+const { Content } = await render(writing)
+
+let relatedProject = null
+if (writing.data.type === 'DEVLOG' && writing.data.projectId) {
+  relatedProject = await getEntry('projects', writing.data.projectId)
+}
+---
+<Layout title={writing.data.title}>
+  <main class="mt-24 mb-24 px-6 md:px-16 max-w-[840px] mx-auto">
+    {relatedProject && (
+      <WritingProjectBanner projectTitle={relatedProject.data.title} projectSlug={relatedProject.id} />
+    )}
+    <WritingHeader type={writing.data.type} title={writing.data.title} date={writing.data.date} />
+    <WritingBody Content={Content} />
+  </main>
+</Layout>

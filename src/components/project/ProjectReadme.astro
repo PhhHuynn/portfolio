@@ -1,0 +1,16 @@
+---
+interface Props {
+  Content: any // component render từ Markdown, truyền qua await project.render()
+}
+const { Content } = Astro.props
+---
+<div class="border border-outline-variant bg-surface-container-lowest p-6 md:p-10 font-body-md text-on-surface">
+  <div class="flex items-center justify-between mb-8 pb-4 border-b border-outline-variant">
+    <h2 class="font-headline-sm text-headline-sm text-primary-container ">README.md</h2>
+    <span class="material-symbols-outlined text-on-surface-variant">description</span>
+  </div>
+  
+  <article class="prose prose-invert max-w-none font-body-lg text-body-lg leading-relaxed border-l-2 border-primary/30 pl-6 [&_strong]:text-primary-container [&_h2]:uppercase [&_h2]:text-primary-container [&_h2]:mt-3 [&_h2]:font-headline-sm ">
+  <Content />
+</article>
+</div>

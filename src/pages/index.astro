@@ -1,11 +1,55 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import TheHero from "../components/TheHero.astro";
+import StatsSection from "../components/StatsSection.astro";
+import ProjectsSection from "../components/ProjectsSection.astro";
+import WritingSection from "../components/WritingSection.astro";
+import type { Project, WritingEntry, StatItem } from "../types";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const statsData: StatItem[] = [
+  { id: "commits", label: "COMMITS_YTD", value: "537+" },
+  { id: "age", label: "START_AGE", value: "17" },
+  { id: "uptime", label: "UPTIME_PCT", value: "99.9" },
+  { id: "projects", label: "PROJ_SHIPPED", value: "12" },
+];
+
+const [projectEntries, writingEntries] = await Promise.all([
+  getCollection("projects"),
+  getCollection("writings"),
+]);
+
+const projectsData: Project[] = projectEntries
+  .sort((a, b) => Number(b.data.featured) - Number(a.data.featured))
+  .map((project) => ({
+    id: project.id,
+    terminal_path: project.data.terminal_path,
+    version: project.data.version,
+    title: project.data.title,
+    description: project.data.description,
+    image_src: project.data.image_src ?? "/favicon.svg",
+    image_alt: project.data.image_alt ?? project.data.title,
+    tags: project.data.tags,
+    links: project.data.links,
+    featured: project.data.featured,
+  }));
+
+const writingsData: WritingEntry[] = writingEntries
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .map((writing) => ({
+    id: writing.id,
+    type: writing.data.type,
+    title: writing.data.title,
+    date: writing.data.date,
+    slug: `/writing/${writing.id}`,
+  }));
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Phương Huyền — Product Engineer">
+  <main class="mx-auto px-margin-mobile md:px-margin-desktop pt-32">
+    <TheHero />
+    <ProjectsSection projectsData={projectsData} />
+    <WritingSection writingsData={writingsData} />
+    <StatsSection statsData={statsData} />
+  </main>
 </Layout>

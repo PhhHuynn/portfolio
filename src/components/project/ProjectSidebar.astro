@@ -1,0 +1,20 @@
+---
+interface Stat { label: string; value: string | number }
+interface Props { stats: Stat[] }
+const { stats } = Astro.props
+---
+{stats.length > 0 && (
+  <aside class="lg:col-span-4 space-y-gutter">
+    <div class="border border-outline-variant p-6 bg-surface-container-high">
+      <h3 class="font-label-caps text-label-caps text-on-surface-variant mb-4 tracking-widest">SYSTEM_INFO</h3>
+      <ul class="space-y-4 font-code-sm text-code-sm">
+        {stats.map((stat) => (
+          <li class="flex justify-between border-b border-outline-variant pb-2">
+            <span class="text-on-surface-variant">{stat.label}</span>
+            <span class="text-primary">{stat.value}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </aside>
+)}

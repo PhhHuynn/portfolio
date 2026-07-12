@@ -1,0 +1,124 @@
+---
+import type { WritingEntry } from "../types";
+
+interface Props {
+  writingsData: WritingEntry[];
+}
+const { writingsData } = Astro.props;
+
+function getTagClasses(type: WritingEntry["type"]) {
+  switch (type) {
+    case "DEVLOG":
+      return {
+        tag: "text-on-tertiary-container bg-surface-container border-outline-variant group-hover:border-primary-container/30",
+        line: "bg-primary-container",
+      };
+    case "THOUGHTS":
+      return {
+        tag: "text-primary-container bg-primary-container/10 border-primary-container/20",
+        line: "bg-primary-container",
+      };
+    case "SYSTEM":
+      return {
+        tag: "text-error bg-error/10 border-error/20",
+        line: "bg-error",
+      };
+  }
+}
+---
+
+<section data-aos="fade-up" class="mb-32" id="journal">
+  <div class="flex items-center gap-4 mb-12">
+    <h2 class="font-headline-md text-headline-md text-on-surface">SYSTEM_WRITINGS</h2>
+    <div class="cyber-square-dot"></div>
+    <div class="h-px grow bg-outline-variant"></div>
+  </div>
+
+  <!-- Thêm id="writing-list" để JavaScript tìm thấy vùng này -->
+  <div id="writing-list" class="flex flex-col gap-px bg-outline-variant border border-outline-variant">
+    {writingsData.map((writing, index) => (
+      <a
+        href={writing.slug}
+        data-index={index}
+        class="writing-item p-6 bg-surface-container-lowest hover:bg-surface-container-low transition-all group flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer relative overflow-hidden"
+      >
+        <div
+          class:list={[
+            "absolute left-0 top-0 bottom-0 w-1 -translate-x-full group-hover:translate-x-0 transition-transform duration-300",
+            getTagClasses(writing.type)?.line,
+          ]}
+        ></div>
+
+        <div class="flex items-center gap-4">
+          <span
+            class:list={[
+              "font-code-sm text-code-sm px-2 py-1 border transition-colors",
+              getTagClasses(writing.type)?.tag,
+            ]}
+          >
+            [{writing.type}]
+          </span>
+          <span class="text-on-surface font-medium font-mono text-lg transition-colors group-hover:text-primary">
+            {writing.title}
+          </span>
+        </div>
+
+        <div class="flex items-center gap-6">
+          <span class="font-code-sm text-code-sm text-on-surface-variant">{writing.date}</span>
+          <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary-container transition-transform group-hover:translate-x-2">
+            arrow_forward
+          </span>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  {writingsData.length > 5 && (
+    <div class="flex justify-center mt-6">
+      <button 
+        id="toggle-btn" 
+        class="px-6 py-2 border border-outline-variant text-on-surface font-mono hover:bg-surface-container-low transition-colors text-sm cursor-pointer"
+      >
+        view_more
+      </button>
+    </div>
+  )}
+</section>
+
+<script>
+  const INITIAL_VISIBLE_COUNT = 5; 
+  
+  const listContainer = document.getElementById('writing-list');
+  const toggleBtn = document.getElementById('toggle-btn');
+  
+  if (listContainer) {
+    const items = listContainer.querySelectorAll('.writing-item');
+    let isExpanded = false;
+
+    function updateVisibility() {
+      items.forEach((item) => {
+        const index = parseInt(item.getAttribute('data-index') || '0', 10);
+        if (isExpanded || index < INITIAL_VISIBLE_COUNT) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      if (toggleBtn) {
+        toggleBtn.textContent = isExpanded ? 'collapse' : 'view_more';
+      }
+    }
+
+    toggleBtn?.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+      updateVisibility();
+      
+      if (!isExpanded) {
+        document.getElementById('journal')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    updateVisibility();
+  }
+</script>

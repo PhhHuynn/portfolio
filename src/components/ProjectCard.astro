@@ -1,0 +1,92 @@
+---
+import type { Project } from "../types";
+
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+---
+
+<div
+  class:list={[
+    "border border-outline-variant bg-surface-container-lowest flex flex-col group neo-shadow-hover transition-all duration-300",
+    project.featured && "md:col-span-2 md:flex-row",
+  ]}
+>
+  <!-- Header & ảnh -->
+  <div
+    class:list={[
+      "flex flex-col",
+      project.featured
+        ? "md:w-1/2 border-b md:border-b-0 md:border-r border-outline-variant"
+        : "w-full",
+    ]}
+  >
+    <div class="terminal-header flex items-center justify-between px-4 py-2 border-b border-outline-variant bg-surface-container">
+      <span class="font-code-sm text-code-sm text-on-surface-variant transition-colors group-hover:text-primary-container">
+        {project.terminal_path}
+      </span>
+      <div class="flex gap-1.5">
+        <div class="w-2 h-2 rounded-full bg-error/20"></div>
+        <div class="w-2 h-2 rounded-full bg-primary-container/20"></div>
+        <div class="w-2 h-2 rounded-full bg-primary-container/50 group-hover:bg-primary-container transition-colors"></div>
+      </div>
+    </div>
+
+    <div class="relative h-48 overflow-hidden grow bg-surface-container">
+      <img
+        src={project.image_src}
+        alt={project.image_alt}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale group-hover:grayscale-0"
+      />
+    </div>
+  </div>
+
+  <!-- Chi tiết -->
+  <div
+    class:list={[
+      "p-6 flex flex-col gap-4 grow",
+      project.featured && "md:w-1/2 justify-center",
+    ]}
+  >
+    <div class="flex justify-between items-start">
+      <h3 class="font-headline-sm text-headline-sm text-primary transition-colors group-hover:text-primary-container uppercase">
+        {project.title}
+      </h3>
+      <span class="font-code-sm text-code-sm text-on-primary-container bg-primary-container/10 border border-primary-container/20 px-2 py-0.5">
+        {project.version}
+      </span>
+    </div>
+
+    <p class="text-on-surface-variant font-mono text-sm leading-relaxed group-hover:text-on-surface transition-colors">
+      {project.description}
+    </p>
+
+    <div class="flex flex-wrap gap-2 mt-auto pt-4">
+      {project.tags.slice(0, 3).map((tag) => (
+        <span class="border border-primary-container/20 bg-primary-container/5 px-2 py-1 font-code-sm text-code-sm text-primary-fixed-dim hover:border-primary-container hover:shadow-[0_0_10px_rgba(0,255,65,0.2)] transition-all">
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4 mt-4 border-t border-outline-variant pt-4">
+      {project.links.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            "font-code-sm text-xs flex items-center gap-1 group/link transition-all",
+            link.isPrimary
+              ? "text-primary-container hover:text-primary"
+              : "text-on-surface-variant hover:text-primary",
+          ]}
+        >
+          <span class="opacity-50">$</span> {link.label}
+          <span class="material-symbols-outlined !text-xs group-hover/link:translate-x-1 transition-transform">
+            arrow_forward
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>

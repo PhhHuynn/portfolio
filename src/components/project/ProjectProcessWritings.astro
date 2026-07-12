@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+  writings: CollectionEntry<'writings'>[]
+}
+const { writings } = Astro.props
+---
+{writings.length > 0 && (
+  <section class="mt-24 border border-outline-variant bg-surface-container-lowest">
+    <div class="flex items-center px-6 py-4 border-b border-outline-variant justify-between bg-surface-container-high">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary">history</span>
+        <h2 class="font-label-caps text-label-caps text-primary">PROCESS_WRITINGS</h2>
+      </div>
+      <div class="font-code-sm text-code-sm text-on-surface-variant">TOTAL_EVENTS: {writings.length}</div>
+    </div>
+    <div class="divide-y divide-outline-variant font-code-sm text-code-sm">
+      {writings.map((writing) => (
+        <a
+          href={`/writing/${writing.id}`}
+          class="flex flex-col sm:flex-row p-4 hover:bg-primary/5 transition-colors cursor-pointer group"
+        >
+          <div class="sm:w-48 text-on-surface-variant mb-1 sm:mb-0">{writing.data.date}</div>
+          <div class="flex-grow text-on-surface group-hover:text-primary transition-colors">[{writing.data.type}] {writing.data.title}</div>
+          <div class="text-primary opacity-0 group-hover:opacity-100 transition-opacity">{writing.id.slice(0, 7)}</div>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

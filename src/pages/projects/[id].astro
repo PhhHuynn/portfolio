@@ -1,0 +1,39 @@
+---
+import { getCollection, getEntry, render } from 'astro:content'
+import Layout from '../../layouts/Layout.astro'
+import ProjectHero from '../../components/project/ProjectHero.astro'
+import ProjectVisualizer from '../../components/project/ProjectVisualizer.astro'
+import ProjectReadme from '../../components/project/ProjectReadme.astro'
+import ProjectSidebar from '../../components/project/ProjectSidebar.astro'
+import ProjectProcessWritings from '../../components/project/ProjectProcessWritings.astro'
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects')
+  return projects.map((project) => ({ params: { id: project.id } }))
+}
+
+const { id } = Astro.params
+const project = await getEntry('projects', id!)
+if (!project) return Astro.redirect('/404')
+
+const { Content } = await render(project)
+const allWritings = await getCollection('writings')
+const relatedWritings = allWritings
+  .filter((writing) => writing.data.projectId === id)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+---
+<Layout title={project.data.title}>
+  <main class="mt-24 mb-24 px-6 md:px-16 max-w-[1440px] mx-auto">
+    <ProjectHero project={project.data} />
+    <ProjectVisualizer imageSrc={project.data.image_src} imageAlt={project.data.image_alt} />
+
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+      <div class="lg:col-span-8">
+        <ProjectReadme Content={Content} />
+      </div>
+      <ProjectSidebar stats={project.data.stats} />
+    </section>
+
+    <ProjectProcessWritings writings={relatedWritings} />
+  </main>
+</Layout>

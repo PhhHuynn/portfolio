@@ -1,0 +1,192 @@
+---
+import { Code } from 'astro:components';
+
+const email = "phuonghuyen.5872@gmail.com";
+const cvPdfUrl = "/CV.pdf";
+
+const socialLinks = [
+  { label: "GITHUB", url: "https://github.com/PhhHuynn" },
+  { label: "SOURCE CODE", url: "https://github.com/PhhHuynn" },
+];
+
+
+const codeTerminal = `const system = { 
+    init: () => "ready", 
+    version: "2.0.4", 
+    kernel: "creative-dev-v1" 
+};`;
+---
+
+<section data-aos="fade-up" class="mb-32 relative">
+  <!-- Background Code Decor -->
+  <div class="absolute -top-16 left-40 opacity-10 pointer-events-none select-none overflow-hidden h-64 animate-flicker">
+<Code code={codeTerminal} lang="plaintext" theme="css-variables" />  </div>
+
+  <div class="flex flex-col md:flex-row gap-12 items-start">
+    <!-- Left Column -->
+    <div class="flex flex-col gap-6 md:w-[65%] w-full">
+      <div class="flex items-center gap-4">
+        <span class="font-code-sm text-code-sm bg-surface-container px-3 py-1 border border-outline-variant text-on-surface">
+          v2.0.4_STABLE
+        </span>
+        <span class="h-px grow bg-outline-variant"></span>
+      </div>
+
+      <h1 class="text-display-lg-mobile md:text-display-lg text-on-surface max-w-5xl leading-none md:leading-[0.9]">
+        PRODUCT
+        <span class="text-primary-container ml-3">ENGINEER</span>
+      </h1>
+
+      <div class="inline-block">
+        <p class="text-body-lg text-on-surface-variant max-w-fit font-code-sm">
+          <span class="text-primary-container mr-2">&gt;</span>
+          building high-performance technical tools...<span class="animate-pulse">_</span>
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-4 mt-4">
+        <button
+          type="button"
+          data-open-cv-modal
+          class="px-8 py-3 font-code-sm text-sm border-2 border-primary-container transition-all duration-300 flex items-center gap-2 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:shadow-[0_0_20px_rgba(0,255,65,0.3)] active:scale-95"
+        >
+          <span class="material-symbols-outlined [font-variation-settings:'FILL'_1]">terminal</span>
+          OPEN_CV.MODAL
+        </button>
+
+        <a
+          href="#projects"
+          data-scroll-projects
+          class="bg-transparent px-8 py-3 font-code-sm text-sm border-2 border-outline-variant transition-all duration-300 text-on-surface hover:border-on-surface hover:bg-white/5 active:scale-95"
+        >
+          SCROLL_PROJECTS.SH
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="hidden md:flex flex-col gap-8 md:w-[35%] border-l border-outline-variant pl-8">
+      <div class="flex flex-col gap-2 mb-4">
+        <span class="text-code-sm tracking-wider text-on-surface-variant opacity-50 font-code-sm">USER_IDENTIFICATION</span>
+        <h2 class="text-display-lg-mobile text-primary-container tracking-tighter leading-none font-bold">
+          Phương Huyền
+        </h2>
+        <div class="h-px w-full bg-primary-container/20"></div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-primary-container"></span>
+          <span class="text-label-caps tracking-wider text-on-surface-variant font-code-sm">CONTACT_ENDPOINTS</span>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          {socialLinks.map((link) => (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant transition-all duration-200 hover:text-primary hover:pl-2"
+            >
+              <span>{link.label}</span>
+              <span class="!text-sm material-symbols-outlined group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
+                arrow_outward
+              </span>
+            </a>
+          ))}
+
+          <!-- Email: onclick gọi thẳng hàm global copyEmail() định nghĩa trong <script> bên dưới -->
+          <button
+            id="copy-email-btn"
+            data-email={email}
+            class="group flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant transition-all duration-200 hover:text-primary hover:pl-2 text-left"
+          >
+            <span>EMAIL</span>
+            <span class="!text-sm material-symbols-outlined group-hover:scale-110 transition-transform">
+              content_copy
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<dialog
+  id="cv-modal"
+  class="fixed inset-0 m-auto w-[min(92vw,960px)] max-h-[90vh] rounded-none border border-outline-variant bg-surface-container-lowest text-on-surface p-0 backdrop:bg-black/70 backdrop:backdrop-blur-sm"
+>
+  <div class="flex items-center justify-between gap-4 px-4 py-3 border-b border-outline-variant bg-surface-container-high">
+    <div class="flex items-center gap-3 min-w-0">
+      <span class="w-2.5 h-2.5 rounded-full bg-primary-container shadow-[0_0_14px_rgba(0,255,65,0.6)]"></span>
+      <div class="font-code-sm text-code-sm text-on-surface-variant truncate">~/docs/cv.pdf</div>
+    </div>
+    <div class="flex items-center gap-2">
+      <a
+        href={cvPdfUrl}
+        download
+        class="px-3 py-2 font-code-sm text-code-sm border border-primary-container text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-colors"
+      >
+        DOWNLOAD_PDF
+      </a>
+      <button
+        type="button"
+        data-close-cv-modal
+        class="px-3 py-2 font-code-sm text-code-sm border border-outline-variant text-on-surface-variant hover:text-on-surface hover:border-on-surface transition-colors"
+      >
+        CLOSE
+      </button>
+    </div>
+  </div>
+
+  <div class="bg-background">
+    <iframe
+      src={cvPdfUrl}
+      title="CV Preview"
+      class="w-full h-[78vh] border-0"
+    ></iframe>
+  </div>
+</dialog>
+
+<script>
+  const openBtn = document.querySelector("[data-open-cv-modal]");
+  const closeBtn = document.querySelector("[data-close-cv-modal]");
+  const modal = document.getElementById("cv-modal");
+  const scrollProjectsBtn = document.querySelector("[data-scroll-projects]");
+  const projectsSection = document.getElementById("projects");
+
+  openBtn?.addEventListener("click", () => {
+    if (modal instanceof HTMLDialogElement) {
+      modal.showModal();
+    }
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    if (modal instanceof HTMLDialogElement) {
+      modal.close();
+    }
+  });
+
+  modal?.addEventListener("click", (event) => {
+    if (event.target === modal && modal instanceof HTMLDialogElement) {
+      modal.close();
+    }
+  });
+
+  scrollProjectsBtn?.addEventListener("click", (event) => {
+    event.preventDefault();
+    projectsSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  const btn = document.getElementById("copy-email-btn");
+  btn?.addEventListener("click", async () => {
+    const email = btn.getAttribute("data-email") ?? "";
+    try {
+      await navigator.clipboard.writeText(email);
+      alert("✅ Email copied to clipboard!");
+    } catch (err) {
+      console.error(err);
+      alert("❌ Failed to copy email.");
+    }
+  });
+</script>
