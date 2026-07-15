@@ -1,6 +1,6 @@
 ---
 terminal_path: "~/cineticket"
-version: "v2.4.0"
+version: "v2.0.0"
 title: "Cinema Ticket"
 description: |
     Hệ thống quản lý rạp chiếu phim và đặt vé trực tuyến tích hợp AI,
@@ -13,9 +13,9 @@ links:
     - label: "$./project detail"
       href: "/projects/cineticket"
       isPrimary: true
-    - label: "$./launch_live.exe"
-      href: "https://datn-dotnet-1.onrender.com"
-      isPrimary: true
+    - label: "$ cat source.git"
+      href: "https://github.com/PhhHuynn/DotNet-Cinema"
+      isPrimary: false
 featured: true
 stats:
     - label: "STATUS"

@@ -7,7 +7,7 @@ description: |
     Kết hợp giao diện Vue 3 + Vite với backend ASP.NET Core, Entity Framework và SignalR cho chat realtime.
 image_src: "/images/foodshop-cover.png"
 image_alt: "Food Shop dashboard preview"
-tags: ["ASP.NET Core", "Vue 3", "Entity Framework", "SignalR"]
+tags: ["ASP.NET Core", "Vue 3", "SQL Server", "Entity Framework", "SignalR"]
 links:
     - label: "$./project detail"
       href: "/projects/foodshop"
@@ -29,9 +29,18 @@ stats:
 
 Food Shop là một dự án website đặt đồ ăn online, thiết kế để hỗ trợ:
 
-- người dùng đặt món, quản lý giỏ hàng và xem lịch sử đơn hàng,
-- nhân viên bán hàng quản lý đơn hàng,
-- admin quản lý người dùng, danh mục, thực phẩm và truy cập chat.
-  Backend xây dựng bằng ASP.NET Core, Entity Framework Core và SQL Server. Hệ thống sử dụng Identity + JWT để xác thực, đồng thời hỗ trợ đăng nhập Google. Client là ứng dụng Vue 3 với Vite và Bootstrap, kết nối tới API để thực hiện CRUD, quản lý sản phẩm, đơn hàng và hiển thị trạng thái người dùng.
+\- người dùng đặt món, quản lý giỏ hàng và xem lịch sử đơn hàng,<br />
+\- nhân viên bán hàng quản lý đơn hàng,<br />
+\- admin quản lý người dùng, danh mục, thực phẩm và truy cập chat.
 
-Dự án cũng tích hợp SignalR để chạy chat realtime giữa khách hàng và nhân viên/admin. Kết quả là một hệ thống full-stack có phân quyền rõ ràng, API REST đầy đủ và trải nghiệm quản lý đơn hàng, sản phẩm, giỏ hàng, cùng chat hỗ trợ trực tiếp.
+<br />
+
+Backend xây dựng bằng ASP.NET Core, Entity Framework Core và SQL Server. Hệ thống sử dụng **Identity + JWT** để xác thực, đồng thời hỗ trợ đăng nhập Google.
+
+<br />
+
+Client là ứng dụng Vue 3 với Vite và Bootstrap, kết nối tới API để thực hiện CRUD, quản lý sản phẩm, đơn hàng và hiển thị trạng thái người dùng.
+
+<br />
+
+Dự án cũng tích hợp **SignalR** để chạy chat realtime giữa khách hàng và nhân viên/admin. Kết quả là một hệ thống full-stack có phân quyền rõ ràng, API REST đầy đủ và trải nghiệm quản lý đơn hàng, sản phẩm, giỏ hàng, cùng chat hỗ trợ trực tiếp.

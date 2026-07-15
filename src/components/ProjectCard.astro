@@ -74,6 +74,7 @@ const { project } = Astro.props;
       {project.links.map((link) => (
         <a
           href={link.href}
+          
           class:list={[
             "font-code-sm text-xs flex items-center gap-1 group/link transition-all",
             link.isPrimary
